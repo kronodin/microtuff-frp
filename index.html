@@ -3,79 +3,331 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Microtuff Solutions | FRP Bypass & iCloud Removal Service</title>
+    <title>Microtuff Solutions | FRP Bypass & iCloud Removal — Jamaica's #1 Unlock Service</title>
+    <meta name="description" content="Professional FRP Bypass & iCloud Removal service in Jamaica. Samsung, Huawei, Xiaomi, iPhone & more. From $2,500 JMD. Same-day service available.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
     <style>
-        * {
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
         :root {
-            --dark-blue: #0a0e17;
-            --dark-blue-light: #131a2b;
+            --bg-primary: #0a0e17;
+            --bg-card: #151c2c;
+            --bg-card-hover: #1a2440;
             --gold: #d4a843;
-            --gold-light: #e8c468;
+            --gold-light: #e8c368;
             --gold-dark: #b8922e;
-            --white: #f0f0f0;
-            --gray: #8a8a9a;
-            --success: #4caf84;
+            --gold-glow: rgba(212, 168, 67, 0.15);
+            --gold-glow-strong: rgba(212, 168, 67, 0.3);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border: #1e293b;
+            --border-gold: rgba(212, 168, 67, 0.25);
+            --success: #34d399;
+            --whatsapp: #25d366;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--dark-blue);
-            color: var(--white);
-            line-height: 1.6;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
             min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Navigation */
-        nav {
-            background: var(--dark-blue-light);
-            padding: 1rem 2rem;
-            border-bottom: 2px solid var(--gold);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
+        /* === GRID BACKGROUND === */
+        .grid-bg {
+            position: fixed;
             top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(212, 168, 67, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(212, 168, 67, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .grid-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 50% 0%, rgba(212, 168, 67, 0.06) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 50%, rgba(212, 168, 67, 0.03) 0%, transparent 50%),
+                        radial-gradient(ellipse at 20% 80%, rgba(212, 168, 67, 0.03) 0%, transparent 50%);
+        }
+
+        /* === PARTICLES === */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float-particle linear infinite;
+        }
+
+        @keyframes float-particle {
+            0% { opacity: 0; transform: translateY(100vh) scale(0); }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { opacity: 0; transform: translateY(-10vh) scale(1); }
+        }
+
+        /* === NAVIGATION === */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
+            background: rgba(10, 14, 23, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 14, 23, 0.95);
+            border-bottom-color: var(--border-gold);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .logo {
-            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--gold);
-            text-decoration: none;
-            letter-spacing: 1px;
+            letter-spacing: -0.5px;
+            transition: opacity 0.3s;
         }
 
-        .logo span {
-            color: var(--white);
-            font-weight: 300;
+        .logo:hover {
+            opacity: 0.85;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: var(--bg-primary);
+        }
+
+        .logo-text span {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-cta {
-            background: var(--gold);
-            color: var(--dark-blue);
-            padding: 0.5rem 1.2rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: background 0.3s;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            color: var(--bg-primary) !important;
+            padding: 0.6rem 1.4rem;
+            border-radius: 8px;
+            font-weight: 600 !important;
+            font-size: 0.875rem !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 10px rgba(212, 168, 67, 0.2);
+        }
+
+        .nav-cta::after {
+            display: none !important;
         }
 
         .nav-cta:hover {
-            background: var(--gold-light);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(212, 168, 67, 0.35);
+            color: var(--bg-primary) !important;
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--dark-blue-light) 50%, #0d1525 100%);
-            padding: 5rem 2rem;
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* === LAYOUT === */
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-dark {
+            background: rgba(21, 28, 44, 0.4);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-dark .section {
+            padding: 6rem 2rem;
+        }
+
+        /* === SECTION HEADER === */
+        .section-header {
             text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--gold-glow);
+            border: 1px solid var(--border-gold);
+            color: var(--gold);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        .section-badge .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.5); }
+        }
+
+        .section-header h2 {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .section-header h2 .gold {
+            color: var(--gold);
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-divider {
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark));
+            margin: 1.2rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* === HERO === */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
             position: relative;
             overflow: hidden;
         }
@@ -83,45 +335,92 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(ellipse at center, rgba(212, 168, 67, 0.05) 0%, transparent 70%);
-            animation: pulse 8s ease-in-out infinite;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(212, 168, 67, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            animation: hero-glow 6s ease-in-out infinite alternate;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 1; }
+        @keyframes hero-glow {
+            0% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+            100% { opacity: 1; transform: translateX(-50%) scale(1.1); }
         }
 
         .hero-content {
             position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
+            z-index: 2;
+            max-width: 850px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(212, 168, 67, 0.1);
+            border: 1px solid var(--border-gold);
+            color: var(--gold-light);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            animation: fadeInDown 0.6s ease-out 0.2s both;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-badge .pulse-ring {
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .hero-badge .pulse-ring::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            width: 14px;
+            height: 14px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            animation: ring-pulse 2s ease-out infinite;
+        }
+
+        @keyframes ring-pulse {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
         }
 
         .hero h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            color: var(--white);
-            line-height: 1.2;
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.7s ease-out 0.4s both;
         }
 
         .hero h1 .highlight {
-            color: var(--gold);
-                   }
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-        .hero p {
+        .hero-subtitle {
             font-size: 1.15rem;
-            color: var(--gray);
-            margin-bottom: 2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            animation: fadeInUp 0.7s ease-out 0.6s both;
         }
 
         .hero-buttons {
@@ -129,93 +428,138 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
+            animation: fadeInUp 0.7s ease-out 0.8s both;
         }
 
-        .btn-primary {
-            background: var(--gold);
-            color: var(--dark-blue);
-            padding: 0.9rem 2rem;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 4rem;
+            animation: fadeInUp 0.7s ease-out 1s both;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat .number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
             font-weight: 700;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s;
+            color: var(--gold);
+        }
+
+        .hero-stat .label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* === BUTTONS === */
+        .btn-primary {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-        }
-
-        .btn-primary:hover {
-            background: var(--gold-light);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(212, 168, 67, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--gold);
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            color: var(--bg-primary);
             padding: 0.9rem 2rem;
-            border: 2px solid var(--gold);
-            border-radius: 6px;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             text-decoration: none;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(212, 168, 67, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(212, 168, 67, 0.4);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            color: var(--gold);
+            padding: 0.9rem 2rem;
+            border: 2px solid var(--border-gold);
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .btn-secondary:hover {
-            background: var(--gold);
-            color: var(--dark-blue);
+            background: var(--gold-glow);
+            border-color: var(--gold);
             transform: translateY(-2px);
         }
 
-        /* Services Section */
-        .services {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--whatsapp);
+            color: #fff;
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.25);
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
+        .btn-whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+            background: #20bd5a;
         }
 
-        .section-header h2 {
-            font-size: 2.2rem;
-            color: var(--white);
-            margin-bottom: 0.5rem;
-        }
-
-        .section-header .underline {
-            width: 60px;
-            height: 3px;
-            background: var(--gold);
-            margin: 1rem auto;
-        }
-
-        .section-header p {
-            color: var(--gray);
-            font-size: 1.05rem;
-        }
-
-        .service-cards {
+        /* === SERVICES GRID === */
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
             gap: 2rem;
         }
 
         .service-card {
-            background: var(--dark-blue-light);
-            border: 1px solid rgba(212, 168, 67, 0.2);
-            border-radius: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
             padding: 2.5rem;
-            transition: all 0.3s;
             position: relative;
             overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .service-card::before {
@@ -225,9 +569,10 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark));
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
             transform: scaleX(0);
-            transition: transform 0.3s;
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .service-card:hover::before {
@@ -235,737 +580,1117 @@
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            border-color: var(--gold);
+            border-color: var(--border-gold);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px var(--gold-glow);
+        }
+
+        .service-card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
         }
 
         .service-icon {
-            width: 60px;
-            height: 60px;
+            width: 56px;
+            height: 56px;
+            min-width: 56px;
             background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-            border-radius: 12px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+            box-shadow: 0 4px 15px rgba(212, 168, 67, 0.3);
         }
 
-        .service-card h3 {
-            font-size: 1.5rem;
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
-
-        .service-card p {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-        }
-
-        .price-tag {
-            display: inline-block;
-            background: rgba(212, 168, 67, 0.15);
-            color: var(--gold);
-            padding: 0.5rem 1.2rem;
-            border-radius: 20px;
+        .service-card-header-text h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
             font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(212, 168, 67, 0.3);
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .service-card-header-text .price {
+            display: inline-block;
+            background: var(--gold-glow);
+            color: var(--gold);
+            padding: 0.3rem 0.9rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid var(--border-gold);
+        }
+
+        .service-card-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
         }
 
         .service-features {
             list-style: none;
-            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
         }
 
         .service-features li {
-            padding: 0.5rem 0;
-            color: var(--gray);
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
 
-        .service-features li::before {
-            content: '✓';
-            color: var(--gold);
-            font-weight: bold;
+        .service-features li .check {
             width: 20px;
+            height: 20px;
+            min-width: 20px;
+            background: rgba(212, 168, 67, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 0.7rem;
+            font-weight: 700;
         }
 
-        /* Supported Brands */
-        .brands-section {
-            background: var(--dark-blue-light);
-            padding: 4rem 2rem;
-            border-top: 1px solid rgba(212, 168, 67, 0.1);
-            border-bottom: 1px solid rgba(212, 168, 67, 0.1);
+        /* === WHAT IS FRP === */
+        .frp-info {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 3rem;
         }
 
-        .brands-section .section-header {
-            margin-bottom: 2rem;
+        .frp-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 8px 30px rgba(212, 168, 67, 0.25);
+        }
+
+        .frp-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .frp-content p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .frp-content p + p {
+            margin-top: 1rem;
+        }
+
+        /* === HOW IT WORKS === */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            position: relative;
+        }
+
+        .steps-grid::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--border-gold), var(--gold), var(--border-gold));
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .steps-grid::before {
+                display: block;
+            }
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .step-card:hover {
+            border-color: var(--border-gold);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .step-number {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            color: var(--bg-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 4px 20px rgba(212, 168, 67, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-card h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* === BRANDS === */
+        .brands-container {
+            text-align: center;
         }
 
         .brands-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 1rem;
+            gap: 0.8rem;
             max-width: 900px;
             margin: 0 auto;
         }
 
         .brand-chip {
-            background: var(--dark-blue);
-            border: 1px solid rgba(212, 168, 67, 0.3);
-            color: var(--white);
-            padding: 0.6rem 1.4rem;
-            border-radius: 30px;
-            font-size: 0.95rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 0.7rem 1.4rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
             font-weight: 500;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: default;
         }
 
         .brand-chip:hover {
-            background: var(--gold);
-            color: var(--dark-blue);
+            background: var(--gold-glow);
             border-color: var(--gold);
-            transform: scale(1.05);
+            color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px var(--gold-glow);
         }
 
-        /* Device Checker Form */
-        .checker-section {
-            padding: 5rem 2rem;
+        /* === PRICING === */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
             max-width: 800px;
             margin: 0 auto;
         }
 
-        .checker-form-container {
-            background: var(--dark-blue-light);
-            border: 1px solid rgba(212, 168, 67, 0.2);
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 3rem;
+            padding: 2.5rem;
+            text-align: center;
             position: relative;
+            transition: all 0.3s;
         }
 
-        .checker-form-container::before {
-            content: '';
+        .pricing-card:hover {
+            border-color: var(--border-gold);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--gold);
+            background: linear-gradient(180deg, rgba(212, 168, 67, 0.05) 0%, var(--bg-card) 30%);
+            box-shadow: 0 10px 50px rgba(212, 168, 67, 0.1);
+        }
+
+        .pricing-card.featured::before {
+            content: 'Most Popular';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark));
-            border-radius: 16px 16px 0 0;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            color: var(--gold);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            color: var(--bg-primary);
+            padding: 0.3rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        .form-group select,
-        .form-group input {
-            width: 100%;
-            padding: 1rem;
-            background: var(--dark-blue);
-            border: 1px solid rgba(212, 168, 67, 0.3);
-            border-radius: 8px;
-            color: var(--white);
-            font-size: 1rem;
-            transition: border-color 0.3s, box-shadow 0.3s;
-            appearance: none;
-            -webkit-appearance: none;
+        .pricing-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
 
-        .form-group select {
-            cursor: pointer;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23d4a843' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 1rem center;
-        }
-
-        .form-group select option {
-            background: var(--dark-blue);
-            color: var(--white);
-            padding: 0.5rem;
-        }
-
-        .form-group select:focus,
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--gold);
-            box-shadow: 0 0 0 3px rgba(212, 168, 67, 0.15);
-        }
-
-        .form-group input::placeholder {
-            color: var(--gray);
-            opacity: 0.6;
-        }
-
-        /* Price Estimator Result */
-        .price-result {
-            display: none;
-            margin-top: 2rem;
-            padding: 2rem;
-            background: rgba(212, 168, 67, 0.08);
-            border: 1px solid rgba(212, 168, 67, 0.3);
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .price-result.visible {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .price-result h3 {
-            color: var(--gold);
-            margin-bottom: 0.5rem;
+        .pricing-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
         }
 
-        .price-result .estimated-price {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--white);
+        .pricing-card .price-amount {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--gold);
             margin: 1rem 0;
         }
 
-        .price-result .price-note {
-            color: var(--gray);
-            font-size: 0.9rem;
+        .pricing-card .price-note {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
             margin-bottom: 1.5rem;
-            font-style: italic;
         }
 
-        .price-result .btn-primary {
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: 1px solid rgba(30, 41, 59, 0.5);
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-features li .icon {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        /* === CONTACT CTA === */
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(212, 168, 67, 0.05) 100%);
+            border: 1px solid var(--border-gold);
+            border-radius: 20px;
+            padding: 4rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 168, 67, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .cta-section p {
+            color: var(--text-secondary);
             font-size: 1.05rem;
-            padding: 1rem 2.5rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
         }
 
-        /* WhatsApp floating button */
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .contact-info-item .icon {
+            width: 36px;
+            height: 36px;
+            background: var(--gold-glow);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .contact-info-item a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-info-item a:hover {
+            color: var(--gold);
+        }
+
+        /* === FOOTER === */
+        .footer {
+            background: #060a12;
+            border-top: 1px solid var(--border);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            max-width: 300px;
+        }
+
+        .footer-section h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .footer-hours {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .footer-hours .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        /* === WHATSAPP FLOAT === */
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
             right: 30px;
             z-index: 999;
-            background: #25d366;
-            color: white;
+            background: var(--whatsapp);
+            color: #fff;
             width: 60px;
             height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 1.7rem;
             text-decoration: none;
-            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
-            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .whatsapp-float:hover {
             transform: scale(1.1);
-            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+            box-shadow: 0 8px 35px rgba(37, 211, 102, 0.5);
         }
 
-        .whatsapp-tooltip {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            background: var(--dark-blue-light);
-            color: var(--white);
-            padding: 0.6rem 1rem;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            border: 1px solid var(--gold);
+        .whatsapp-float::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid var(--whatsapp);
+            border-radius: 50%;
+            animation: ring-pulse 2s ease-out infinite;
+        }
+
+        /* === SCROLL REVEAL === */
+        .reveal {
             opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-            z-index: 999;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .whatsapp-float:hover + .whatsapp-tooltip {
+        .reveal.visible {
             opacity: 1;
+            transform: translateY(0);
         }
 
-        /* How It Works */
-        .how-it-works {
-            padding: 5rem 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* === ANIMATIONS === */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .step {
-            text-align: center;
-            padding: 2rem 1.5rem;
-            background: var(--dark-blue-light);
-            border-radius: 12px;
-            border: 1px solid rgba(212, 168, 67, 0.15);
-            position: relative;
+        /* === MOBILE NAV === */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 72px;
+            left: 0;
+            right: 0;
+            background: rgba(10, 14, 23, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 2rem;
+            z-index: 999;
+            transform: translateY(-100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .step-number {
-            width: 45px;
-            height: 45px;
-            background: var(--gold);
-            color: var(--dark-blue);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            font-weight: 800;
-            margin: 0 auto 1.5rem;
+        .mobile-nav.active {
+            transform: translateY(0);
         }
 
-        .step h4 {
-            color: var(--gold);
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .step p {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        /* Trust Badges */
-        .trust-section {
-            background: var(--dark-blue-light);
-            padding: 4rem 2rem;
-            text-align: center;
-            border-top: 1px solid rgba(212, 168, 67, 0.1);
-        }
-
-        .trust-badges {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .trust-badge {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .trust-badge .icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(212, 168, 67, 0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-        }
-
-        .trust-badge span {
-            color: var(--gray);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        /* Footer */
-        footer {
-            background: #060a12;
-            padding: 3rem 2rem;
-            text-align: center;
-            border-top: 2px solid var(--gold);
-        }
-
-        footer .logo {
-            font-size: 1.3rem;
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
-
-        footer p {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        footer .footer-links {
-            margin-top: 1.5rem;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
-
-        footer .footer-links a {
-            color: var(--gray);
+        .mobile-nav a {
+            display: block;
+            color: var(--text-primary);
             text-decoration: none;
-            font-size: 0.9rem;
+            padding: 0.8rem 0;
+            font-size: 1rem;
+            font-weight: 500;
+            border-bottom: 1px solid var(--border);
             transition: color 0.3s;
         }
 
-        footer .footer-links a:hover {
+        .mobile-nav a:hover {
             color: var(--gold);
         }
 
-        /* Responsive */
+        .mobile-nav .nav-cta {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--bg-primary) !important;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
+            .nav-links {
+                display: none;
             }
 
-            .service-cards {
+            .mobile-toggle {
+                display: block;
+            }
+
+            .mobile-nav {
+                display: block;
+            }
+
+            .hero {
+                padding: 7rem 1.5rem 3rem;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+
+            .hero-stat .number {
+                font-size: 1.4rem;
+            }
+
+            .section {
+                padding: 4rem 1.5rem;
+            }
+
+            .services-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .frp-info {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            .frp-icon-wrapper {
+                margin: 0 auto;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
             }
 
             .service-card {
                 padding: 1.8rem;
             }
 
-            .checker-form-container {
-                padding: 2rem 1.5rem;
-            }
-
-            .trust-badges {
-                gap: 2rem;
-            }
-
-            nav {
-                padding: 1rem;
-            }
-
-            .logo {
-                font-size: 1.2rem;
+            .service-card-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- Grid Background -->
+    <div class="grid-bg"></div>
+
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+
     <!-- Navigation -->
-    <nav>
-        <a href="#" class="logo">MICRO<span>TUFF</span></a>
-        <a href="#checker" class="nav-cta">Check Your Device →</a>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">⚡</div>
+                <div class="logo-text">MICRO<span>TUFF</span></div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="https://wa.me/18768036062?text=Hi%20Microtuff%20Solutions%2C%20I%20need%20help%20with%20FRP%20Bypass%20%2F%20iCloud%20Removal." class="nav-cta" target="_blank">Get Started</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">☰</button>
+        </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>
-                FRP Bypass & iCloud Removal
-                <span class="highlight">Professional Unlock Service</span>
-            </h1>
-            <p>Locked out of your phone? We remove Google FRP locks and iCloud activation locks quickly, safely, and professionally. Same-day service available.</p>
-            <div class="hero-buttons">
-                <a href="#checker" class="btn-primary">� Check Your Device</a>
-                <a href="https://wa.me/18768036062?text=Hi%20Microtuff%20Solutions%2C%20I%20need%20help%20with%20FRP%20Bypass%20%2F%20iCloud%20Removal%20service." class="btn-secondary" target="_blank">💬 WhatsApp Us Now</a>
-            </div>
-        </div>
-    </section>
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#contact">Contact</a>
+        <a href="https://wa.me/18768036062?text=Hi%20Microtuff%20Solutions%2C%20I%20need%20help%20with%20FRP%20Bypass%20%2F%20iCloud%20Removal." class="nav-cta" target="_blank">Get Started</a>
+    </div>
 
-    <!-- Services Section -->
-    <section class="services">
-        <div class="section-header">
-            <h2>Our Services</h2>
-            <div class="underline"></div>
-            <p>Professional device unlocking solutions for all major brands</p>
-        </div>
-        <div class="service-cards">
-            <!-- FRP Bypass Card -->
-            <div class="service-card">
-                <div class="service-icon">🔓</div>
-                <h3>FRP Bypass (Android)</h3>
-                <div class="price-tag">$2,500 – $5,000 JMD</div>
-                <p>Factory Reset Protection bypass for Android devices locked to a Google account after a factory reset. We handle all major brands with a 95%+ success rate.</p>
-                <ul class="service-features">
-                    <li>Samsung, Huawei, Xiaomi, Oppo, Vivo</li>
-                    <li>Motorola, LG, Tecno, Infinix, Google Pixel</li>
-                    <li>Remote support via AnyDesk/TeamViewer</li>
-                    <li>Device shipped to us or drop-off available</li>
-                    <li>Completion time: 30 minutes – 24 hours</li>
-                    <li>100% money-back guarantee if unsuccessful</li>
-                </ul>
-            </div>
-            <!-- iCloud Removal Card -->
-            <div class="service-card">
-                <div class="service-icon">�️</div>
-                <h3>iCloud Removal (iPhone)</h3>
-                <div class="price-tag">Price on Request</div>
-                <p>iCloud Activation Lock removal for iPhones, iPads, and iPods tied to a previous owner's Apple ID. Pricing depends on model and severity of lock.</p>
-                <ul class="service-features">
-                    <li>All iPhone models supported (iPhone 4s – 15 Pro Max)</li>
-                    <li>iPad & iPod Touch models supported <li>iCloud removal via IMEI/server unlock</li>
-                    <li>Clean IMEI — no activation issues post-removal</li>
-                    <li>IC-INFO / GSX verified clean status</li>
-                    <li>Handling time: 1–5 business days</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+    <!-- Content Wrapper -->
+    <div class="content-wrapper">
 
-    <!-- Supported Brands -->
-    <section class="brands-section">
-        <div class="section-header">
-            <h2>Supported Brands</h2>
-            <div class="underline"></div>
-            <p>We service all major smartphone manufacturers</p>
-        </div>
-        <div class="brands-grid">
-            <span class="brand-chip">Samsung</span>
-            <span class="brand-chip">Huawei</span>
-            <span class="brand-chip">Xiaomi</span>
-            <span class="brand-chip">Oppo</span>
-            <span class="brand-chip">Vivo</span>
-            <span class="brand-chip">Motorola</span>
-            <span class="brand-chip">LG</span>
-            <span class="brand-chip">Tecno</span>
-            <span class="brand-chip">Infinix</span>
-            <span class="brand-chip">Google Pixel</span>
-            <span class="brand-chip">iPhone (All Models)</span>
-        </div>
-    </section>
-
-    <!-- Device Checker / Price Estimator -->
-    <section class="checker-section" id="checker">
-        <div class="section-header">
-            <h2>Device Checker & Price Estimator</h2>
-            <div class="underline"></div>
-            <p>Enter your device details to get an instant estimate and connect with us on WhatsApp</p>
-        </div>
-        <div class="checker-form-container">
-            <form id="deviceForm">
-                <div class="form-group">
-                    <label for="brand">Device Brand</label>
-                    <select id="brand" name="brand" required>
-                        <option value="" disabled selected>— Select Brand —</option>
-                        <option value="samsung">Samsung</option>
-                        <option value="huawei">Huawei</option>
-                        <option value="xiaomi">Xiaomi</option>
-                        <option value="oppo">Oppo</option>
-                        <option value="vivo">Vivo</option>
-                        <option value="motorola">Motorola</option>
-                        <option value="lg">LG</option>
-                        <option value="tecno">Tecno</option>
-                        <option value="infinix">Infinix</option>
-                        <option value="google">Google Pixel</option>
-                        <option value="iphone">iPhone (iCloud Removal)</option>
-                    </select>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="pulse-ring"></span>
+                    Jamaica's #1 Phone Unlock Service
                 </div>
-                <div class="form-group">
-                    <label for="model">Device Model</label>
-                    <input type="text" id="model" name="model" placeholder="e.g., Samsung Galaxy A14, iPhone 13 Pro, Redmi Note 12" required>
+                <h1>
+                    FRP Bypass &<br>
+                    <span class="highlight">iCloud Removal</span> Experts
+                </h1>
+                <p class="hero-subtitle">
+                    Locked out of your phone? We professionally remove Google FRP locks and iCloud activation locks — fast, safe, and affordable. Same-day service available.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn-primary">
+                        🔓 View Services
+                    </a>
+                    <a href="https://wa.me/18768036062?text=Hi%20Microtuff%20Solutions%2C%20I%20need%20help%20with%20FRP%20Bypass%20%2F%20iCloud%20Removal." class="btn-whatsapp" target="_blank">
+                        💬 WhatsApp Us Now
+                    </a>
                 </div>
-                <div class="form-group">
-                    <label for="imei">IMEI Number (Optional)</label>
-                    <input type="tel" id="imei" name="imei" placeholder="Enter 15-digit IMEI (check *#06#)" maxlength="15" pattern="[0-9]{15}" title="Enter a valid 15-digit IMEI number">
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="number">5,000+</div>
+                        <div class="label">Devices Unlocked</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="number">95%</div>
+                        <div class="label">Success Rate</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="number">30min</div>
+                        <div class="label">Avg. Turnaround</div>
+                    </div>
                 </div>
-                <div style="text-align: center; margin-top: 1.5rem;">
-                    <button type="submit" class="btn-primary" style="font-size: 1.05rem; padding: 1rem 2.5rem;">
-                        Estimate Price & Book Service
-                    </button>
+            </div>
+        </section>
+
+        <!-- What is FRP Section -->
+        <div class="section-dark">
+            <section class="section">
+                <div class="frp-info reveal">
+                    <div class="frp-icon-wrapper">🛡️</div>
+                    <div class="frp-content">
+                        <h3>What is FRP (Factory Reset Protection)?</h3>
+                        <p>
+                            Factory Reset Protection (FRP) is a security feature introduced by Google that prevents someone from using your Android device after a factory reset — unless they can verify the last Google account that was synced to it.
+                        </p>
+                        <p>
+                            If you've forgotten your Google account credentials after a reset, or purchased a second-hand device that's locked, our professional FRP Bypass service will get your device back up and running — safely and legally.
+                        </p>
+                    </div>
                 </div>
-            </form>
+            </section>
+        </div>
 
-            <!-- Price Result -->
-            <div class="price-result" id="priceResult">
-                <h3 id="resultTitle">Estimated Price</h3>
-                <div class="estimated-price" id="estimatedPrice">$2,500 – $5,000 JMD</div>
-                <div class="price-note" id="priceNote">Final price confirmed upon device inspection or remote diagnosis.</div>
-                <a id="whatsappBtn" href="#" class="btn-primary" target="_blank">
-                    � Book Service on WhatsApp
-                </a>
+        <!-- Services Section -->
+        <section class="section" id="services">
+            <div class="section-header reveal">
+                <div class="section-badge">
+                    <span class="dot"></span>
+                    Our Services
+                </div>
+                <h2>Professional <span class="gold">Unlock Solutions</span></h2>
+                <p>Expert device unlocking for all major smartphone brands with industry-leading success rates</p>
+                <div class="section-divider"></div>
             </div>
-        </div>
-    </section>
+            <div class="services-grid">
+                <!-- FRP Bypass Card -->
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="service-card-header">
+                        <div class="service-icon">🔓</div>
+                        <div class="service-card-header-text">
+                            <h3>FRP Bypass (Android)</h3>
+                            <span class="price">From $2,500 JMD</span>
+                        </div>
+                    </div>
+                    <p class="service-card-description">
+                        Factory Reset Protection bypass for Android devices locked to a Google account after a factory reset. Professional-grade tools with a 95%+ success rate.
+                    </p>
+                    <ul class="service-features">
+                        <li><span class="check">✓</span> Samsung, Huawei, Xiaomi, OPPO, Vivo</li>
+                        <li><span class="check">✓</span> Realme, Itel, Tecno, Infinix</li>
+                        <li><span class="check">✓</span> Unisoc/Spreadtrum chipsets supported</li>
+                        <li><span class="check">✓</span> Remote support via AnyDesk/TeamViewer</li>
+                        <li><span class="check">✓</span> Completion time: 30 min – 24 hours</li>
+                        <li><span class="check">✓</span> 100% money-back guarantee if unsuccessful</li>
+                    </ul>
+                </div>
+                <!-- iCloud Removal Card -->
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="service-card-header">
+                        <div class="service-icon">☁️</div>
+                        <div class="service-card-header-text">
+                            <h3>iCloud Removal (iPhone)</h3>
+                            <span class="price">Price on Request</span>
+                        </div>
+                    </div>
+                    <p class="service-card-description">
+                        iCloud Activation Lock removal for iPhones, iPads, and iPods tied to a previous owner's Apple ID. Pricing depends on model and lock severity.
+                    </p>
+                    <ul class="service-features">
+                        <li><span class="check">✓</span> All iPhone models (iPhone 4s – 15 Pro Max)</li>
+                        <li><span class="check">✓</span> iPad & iPod Touch models supported</li>
+                        <li><span class="check">✓</span> iCloud removal via IMEI/server unlock</li>
+                        <li><span class="check">✓</span> Clean IMEI — no activation issues post-removal</li>
+                        <li><span class="check">✓</span> IC-INFO / GSX verified clean status</li>
+                        <li><span class="check">✓</span> Handling time: 1–5 business days</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-    <!-- How It Works -->
-    <section class="how-it-works">
-        <div class="section-header">
-            <h2>How It Works</h2>
-            <div class="underline"></div>
-            <p>Simple process — get your device unlocked in no time</p>
+        <!-- Supported Brands -->
+        <div class="section-dark">
+            <section class="section">
+                <div class="section-header reveal">
+                    <div class="section-badge">
+                        <span class="dot"></span>
+                        Supported Brands
+                    </div>
+                    <h2>All Major <span class="gold">Brands</span> Supported</h2>
+                    <p>We service all major smartphone manufacturers with specialized tools for each platform</p>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="brands-container reveal reveal-delay-1">
+                    <div class="brands-grid">
+                        <span class="brand-chip">Samsung</span>
+                        <span class="brand-chip">Huawei</span>
+                        <span class="brand-chip">Xiaomi</span>
+                        <span class="brand-chip">OPPO</span>
+                        <span class="brand-chip">Vivo</span>
+                        <span class="brand-chip">Realme</span>
+                        <span class="brand-chip">Itel</span>
+                        <span class="brand-chip">Tecno</span>
+                        <span class="brand-chip">Infinix</span>
+                        <span class="brand-chip">Unisoc/Spreadtrum</span>
+                    </div>
+                </div>
+            </section>
         </div>
-        <div class="steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <h4>Submit Details</h4>
-                <p>Fill out the device checker form above with your brand, model, and IMEI.</p>
-            </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <h4>Get Estimate</h4>
-                <p>Receive an instant price estimate based on your device brand and model.</p>
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <h4>Contact Us</h4>
-                <p>Click the WhatsApp button to book your service with our team.</p>
-            </div>
-            <div class="step">
-                <div class="step-number">4</div>
-                <h4>Device Unlocked</h4>
-                <p>Ship/drop off your device or connect remotely. We handle the rest!</p>
-            </div>
-        </div>
-    </section>
 
-    <!-- Trust Section -->
-    <section class="trust-section">
-        <div class="section-header">
-            <h2>Why Choose Microtuff Solutions?</h2>
-            <div class="underline"></div>
-        </div>
-        <div class="trust-badges">
-            <div class="trust-badge">
-                <div class="icon">�</div>
-                <span>100% Safe & Secure</span>
+        <!-- How It Works -->
+        <section class="section" id="how-it-works">
+            <div class="section-header reveal">
+                <div class="section-badge">
+                    <span class="dot"></span>
+                    Simple Process
+                </div>
+                <h2>How It <span class="gold">Works</span></h2>
+                <p>Get your device unlocked in 4 easy steps</p>
+                <div class="section-divider"></div>
             </div>
-            <div class="trust-badge">
-                <div class="icon">⚡</div>
-                <span>Fast Turnaround</span>
+            <div class="steps-grid">
+                <div class="step-card reveal reveal-delay-1">
+                    <div class="step-number">1</div>
+                    <h4>Contact Us</h4>
+                    <p>Reach out via WhatsApp or phone with your device details and issue.</p>
+                </div>
+                <div class="step-card reveal reveal-delay-2">
+                    <div class="step-number">2</div>
+                    <h4>Get Quote</h4>
+                    <p>Receive an instant price estimate based on your device brand and model.</p>
+                </div>
+                <div class="step-card reveal reveal-delay-3">
+                    <div class="step-number">3</div>
+                    <h4>Send Device</h4>
+                    <p>Walk-in, ship to us, or connect remotely via AnyDesk/TeamViewer.</p>
+                </div>
+                <div class="step-card reveal reveal-delay-4">
+                    <div class="step-number">4</div>
+                    <h4>Device Unlocked</h4>
+                    <p>Your device is unlocked and ready to use. Same-day for most FRP!</p>
+                </div>
             </div>
-            <div class="trust-badge">
-                <div class="icon">💰</div>
-                <span>Money-Back Guarantee</span>
-            </div>
-            <div class="trust-badge">
-                <div class="icon">�</div>
-                <span>Jamaica-Wide Service</span>
-            </div>
-            <div class="trust-badge">
-                <div class="icon">�</div>
-                <span>All Brands Supported</span>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer>
-        <a href="#" class="logo">MICRO<span>TUFF</span></a>
-        <p>&copy; 2026 Microtuff Solutions. All rights reserved.</p>
-        <p style="margin-top: 0.5rem; font-size: 0.85rem;">Professional FRP Bypass & iCloud Removal Services — Island Wide Jamaica</p>
-        <div class="footer-links">
-            <a href="#checker">Device Checker</a>
-            <a href="https://wa.me/18768036062?text=Hi%20Microtuff%20Solutions%2C%20I%20need%20a%20service%20inquiry." target="_blank">WhatsApp Us</a>
+        <!-- Pricing Section -->
+        <div class="section-dark">
+            <section class="section">
+                <div class="section-header reveal">
+                    <div class="section-badge">
+                        <span class="dot"></span>
+                        Transparent Pricing
+                    </div>
+                    <h2>Simple <span class="gold">Pricing</span></h2>
+                    <p>No hidden fees. Get an instant estimate for your device.</p>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="pricing-grid">
+                    <div class="pricing-card reveal reveal-delay-1">
+                        <div class="pricing-icon">🔓</div>
+                        <h3>FRP Bypass</h3>
+                        <div class="price-amount">From $2,500 JMD</div>
+                        <p class="price-note">Final price depends on brand, model & Android version</p>
+                        <ul class="pricing-features">
+                            <li><span class="icon">✓</span> All Android brands supported</li>
+                            <li><span class="icon">✓</span> Same-day completion (most devices)</li>
+                            <li><span class="icon">✓</span> Remote support available</li>
+                            <li><span class="icon">✓</span> Money-back guarantee</li>
+                        </ul>
+                        <a href="https://wa.me/18768036062?text=Hi%2C%20I%20need%20FRP%20Bypass%20pricing%20for%20my%20device." class="btn-secondary" target="_blank" style="width:100%;justify-content:center;">Get Exact Quote</a>
+                    </div>
+                    <div class="pricing-card featured reveal reveal-delay-2">
+                        <div class="pricing-icon">☁️</div>
+                        <h3>iCloud Removal</h3>
+                        <div class="price-amount">Price on Request</div>
+                        <p class="price-note">Varies by iPhone model, iOS version & lock type</p>
+                        <ul class="pricing-features">
+                            <li><span class="icon">✓</span> All iPhone/iPad models</li>
+                            <li><span class="icon">✓</span> Clean IMEI via server unlock</li>
+                            <li><span class="icon">✓</span> IC-INFO / GSX verified</li>
+                            <li><span class="icon">✓</span> 1–5 business days</li>
+                        </ul>
+                        <a href="https://wa.me/18768036062?text=Hi%2C%20I%20need%20iCloud%20Removal%20pricing%20for%20my%20device." class="btn-primary" target="_blank" style="width:100%;justify-content:center;">Get Your Quote</a>
+                    </div>
+                </div>
+            </section>
         </div>
-    </footer>
+
+        <!-- Contact CTA Section -->
+        <section class="section" id="contact">
+            <div class="cta-section reveal">
+                <h2>Ready to <span class="gold">Unlock</span> Your Device?</h2>
+                <p>Contact us today for a free quote. Walk-ins welcome — we're here to help you get back into your phone.</p>
+                <div class="cta-buttons">
+                    <a href="https://wa.me/18768036062?text=Hi%20Microtuff%20Solutions%2C%20I%20need%20help%20with%20FRP%20Bypass%20%2F%20iCloud%20Removal." class="btn-whatsapp" target="_blank">
+                        💬 Chat on WhatsApp
+                    </a>
+                    <a href="tel:+18768036062" class="btn-secondary">
+                        📞 Call Now
+                    </a>
+                </div>
+                <div class="contact-info-grid">
+                    <div class="contact-info-item">
+                        <span class="icon">📞</span>
+                        <a href="tel:+18768036062">1 (876) 803-6062</a>
+                    </div>
+                    <div class="contact-info-item">
+                        <span class="icon">✉️</span>
+                        <a href="mailto:mrmicrotuff@microtuffsolutions.com">mrmicrotuff@microtuffsolutions.com</a>
+                    </div>
+                    <div class="contact-info-item">
+                        <span class="icon">📍</span>
+                        <span>Island Wide, Jamaica</span>
+                    </div>
+                    <div class="contact-info-item">
+                        <span class="icon">🕐</span>
+                        <span>Mon-Fri 9AM-7PM | Sat 9AM-5PM</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <div class="logo-icon">⚡</div>
+                        <div class="logo-text">MICRO<span>TUFF</span></div>
+                    </a>
+                    <p>Jamaica's leading FRP Bypass & iCloud Removal service. Professional, fast, and affordable device unlocking solutions island-wide.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">FRP Bypass</a></li>
+                        <li><a href="#services">iCloud Removal</a></li>
+                        <li><a href="#services">Samsung Unlock</a></li>
+                        <li><a href="#services">iPhone Unlock</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Microtuff Solutions. All rights reserved.</p>
+                <div class="footer-hours">
+                    <span class="status-dot"></span>
+                    Walk-ins Welcome — Open Mon-Sat
+                </div>
+            </div>
+        </footer>
+    </div>
 
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/18768036062?text=Hi%20Microtuff%20Solutions%2C%20I%20need%20help%20with%20FRP%20Bypass%20%2F%20iCloud%20Removal." class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
         💬
     </a>
-    <div class="whatsapp-tooltip">Need help? Chat with us!</div>
 
     <!-- JavaScript -->
     <script>
-        document.getElementById('deviceForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // === PARTICLES ===
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+            particle.style.animationDelay = (Math.random() * 10) + 's';
+            particle.style.width = (Math.random() * 2 + 1) + 'px';
+            particle.style.height = particle.style.width;
+            particlesContainer.appendChild(particle);
+        }
 
-            const brand = document.getElementById('brand').value;
-            const model = document.getElementById('model').value.trim();
-            const imei = document.getElementById('imei').value.trim();
-            const resultDiv = document.getElementById('priceResult');
-            const estimatedPriceEl = document.getElementById('estimatedPrice');
-            const priceNoteEl = document.getElementById('priceNote');
-            const whatsappBtn = document.getElementById('whatsappBtn');
-            const resultTitle = document.getElementById('resultTitle');
-
-            let price, note;
-
-            if (brand === 'iphone') {
-                price = 'Price on Request';
-                note = 'iCloud removal pricing varies by iPhone model, iOS version, and lock severity. Contact us on WhatsApp for an exact quote.';
-                resultTitle.textContent = 'iCloud Removal Estimate';
+        // === NAVBAR SCROLL ===
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
             } else {
-                // Pricing tiers based on brand complexity
-                const highEndBrands = ['samsung', 'huawei', 'google'];
-                const midBrands = ['xiaomi', 'oppo', 'vivo', 'motorola', 'lg'];
-                const budgetBrands = ['tecno', 'infinix'];
-
-                if (highEndBrands.includes(brand)) {
-                    price = '$4,000 – $5,000 JMD';
-                    note = 'Premium brand device. Higher pricing due to advanced security measures.';
-                } else if (midBrands.includes(brand)) {
-                    price = '$3,000 – $4,000 JMD';
-                    note = 'Mid-range brand device. Standard FRP bypass pricing applies.';
-                } else if (budgetBrands.includes(brand)) {
-                    price = '$2,500 – $3,000 JMD';
-                    note = 'Budget brand device. Lower pricing due to simpler security.';
-                } else {
-                    price = '$2,500 – $5,000 JMD';
-                    note = 'Pricing varies by model and Android version. Contact us for exact quote.';
-                }
-                resultTitle.textContent = 'FRP Bypass Estimate';
+                navbar.classList.remove('scrolled');
             }
-
-            estimatedPriceEl.textContent = price;
-            priceNoteEl.textContent = note;
-
-            // Build WhatsApp message
-            const brandName = document.getElementById('brand').options[document.getElementById('brand').selectedIndex].text;
-            const message = encodeURIComponent(
-                `Hi Microtuff Solutions, I need a service booking:\n\n` +
-                `📱 Brand: ${brandName}\n` +
-                `📱 Model: ${model}\n` +
-                (imei ? `� IMEI: ${imei}\n` : '') +
-                `💰 Estimated Price: ${price}\n\n` +
-                `Please confirm availability and next steps.`
-            );
-
-            whatsappBtn.href = `https://wa.me/18768036062?text=${message}`;
-            resultDiv.classList.add('visible');
-            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
 
-        // Auto-fill model suggestions based on brand
-        document.getElementById('brand').addEventListener('change', function() {
-            const modelInput = document.getElementById('model');
-            const placeholders = {
-                'samsung': 'e.g., Galaxy A14, Galaxy S23 Ultra, Galaxy A54',
-                'huawei': 'e.g., Huawei P50, Y9a, Nova 9',
-                'xiaomi': 'e.g., Redmi Note 12, POCO X5 Pro, Mi 13',
-                'oppo': 'e.g., Oppo Reno 8, A77, Find X5',
-                'vivo': 'e.g., Vivo Y36, V27 Pro, X90',
-                'motorola': 'e.g., Moto G73, Edge 40, Razr 40',
-                'lg': 'e.g., LG Velvet, Wing, V60 ThinQ',
-                'tecno': 'e.g., Camon 20, Phantom X2, Spark 10',
-                'infinix': 'e.g., Note 30, Hot 40, GT 20 Pro',
-                'google': 'e.g., Pixel 7 Pro, Pixel 7a, Pixel 8',
-                'iphone': 'e.g., iPhone 13 Pro Max, iPhone 15, iPhone SE 2022'
-            };
-            if (placeholders[this.value]) {
-                modelInput.placeholder = placeholders[this.value];
-            } else {
-                modelInput.placeholder = 'Enter your device model';
-            }
+        // === MOBILE NAV ===
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        mobileToggle.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            mobileToggle.textContent = mobileNav.classList.contains('active') ? '✕' : '☰';
+        });
 
-            // Hide result when brand changes
-            document.getElementById('priceResult').classList.remove('visible');
+        // Close mobile nav on link click
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                mobileToggle.textContent = '☰';
+            });
+        });
+
+        // === SCROLL REVEAL ===
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // === SMOOTH SCROLL FOR ANCHOR LINKS ===
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
         });
     </script>
-
 </body>
 </html>
