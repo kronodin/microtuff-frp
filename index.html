@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microtuff Solutions | FRP Bypass & iCloud Removal Service</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dark-blue: #0a0e17;
+            --dark-blue-light: #131a2b;
+            --gold: #d4a843;
+            --gold-light: #e8c468;
+            --gold-dark: #b8922e;
+            --white: #f0f0f0;
+            --gray: #8a8a9a;
+            --success: #4caf84;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-blue);
+            color: var(--white);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--dark-blue-light);
+            padding: 1rem 2rem;
+            border-bottom: 2px solid var(--gold);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--white);
+            font-weight: 300;
+        }
+
+        .nav-cta {
+            background: var(--gold);
+            color: var(--dark-blue);
+            padding: 0.5rem 1.2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold-light);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--dark-blue-light) 50%, #0d1525 100%);
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(212, 168, 67, 0.05) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        .hero h1 .highlight {
+            color: var(--gold);
+                   }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--dark-blue);
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 168, 67, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--gold);
+            padding: 0.9rem 2rem;
+            border: 2px solid var(--gold);
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--gold);
+            color: var(--dark-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header .underline {
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+            margin: 1rem auto;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.05rem;
+        }
+
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--dark-blue-light);
+            border: 1px solid rgba(212, 168, 67, 0.2);
+            border-radius: 12px;
+            padding: 2.5rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--gold);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .price-tag {
+            display: inline-block;
+            background: rgba(212, 168, 67, 0.15);
+            color: var(--gold);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(212, 168, 67, 0.3);
+        }
+
+        .service-features {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            color: var(--gold);
+            font-weight: bold;
+            width: 20px;
+        }
+
+        /* Supported Brands */
+        .brands-section {
+            background: var(--dark-blue-light);
+            padding: 4rem 2rem;
+            border-top: 1px solid rgba(212, 168, 67, 0.1);
+            border-bottom: 1px solid rgba(212, 168, 67, 0.1);
+        }
+
+        .brands-section .section-header {
+            margin-bottom: 2rem;
+        }
+
+        .brands-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .brand-chip {
+            background: var(--dark-blue);
+            border: 1px solid rgba(212, 168, 67, 0.3);
+            color: var(--white);
+            padding: 0.6rem 1.4rem;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .brand-chip:hover {
+            background: var(--gold);
+            color: var(--dark-blue);
+            border-color: var(--gold);
+            transform: scale(1.05);
+        }
+
+        /* Device Checker Form */
+        .checker-section {
+            padding: 5rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .checker-form-container {
+            background: var(--dark-blue-light);
+            border: 1px solid rgba(212, 168, 67, 0.2);
+            border-radius: 16px;
+            padding: 3rem;
+            position: relative;
+        }
+
+        .checker-form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark));
+            border-radius: 16px 16px 0 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            background: var(--dark-blue);
+            border: 1px solid rgba(212, 168, 67, 0.3);
+            border-radius: 8px;
+            color: var(--white);
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .form-group select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23d4a843' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+        }
+
+        .form-group select option {
+            background: var(--dark-blue);
+            color: var(--white);
+            padding: 0.5rem;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212, 168, 67, 0.15);
+        }
+
+        .form-group input::placeholder {
+            color: var(--gray);
+            opacity: 0.6;
+        }
+
+        /* Price Estimator Result */
+        .price-result {
+            display: none;
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(212, 168, 67, 0.08);
+            border: 1px solid rgba(212, 168, 67, 0.3);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .price-result.visible {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .price-result h3 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .price-result .estimated-price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--white);
+            margin: 1rem 0;
+        }
+
+        .price-result .price-note {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .price-result .btn-primary {
+            font-size: 1.05rem;
+            padding: 1rem 2.5rem;
+        }
+
+        /* WhatsApp floating button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-tooltip {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: var(--dark-blue-light);
+            color: var(--white);
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            border: 1px solid var(--gold);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .whatsapp-float:hover + .whatsapp-tooltip {
+            opacity: 1;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 5rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            background: var(--dark-blue-light);
+            border-radius: 12px;
+            border: 1px solid rgba(212, 168, 67, 0.15);
+            position: relative;
+        }
+
+        .step-number {
+            width: 45px;
+            height: 45px;
+            background: var(--gold);
+            color: var(--dark-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step h4 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .step p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Trust Badges */
+        .trust-section {
+            background: var(--dark-blue-light);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(212, 168, 67, 0.1);
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .trust-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .trust-badge .icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(212, 168, 67, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+
+        .trust-badge span {
+            color: var(--gray);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: #060a12;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 2px solid var(--gold);
+        }
+
+        footer .logo {
+            font-size: 1.3rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        footer .footer-links {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        footer .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        footer .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .service-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 1.8rem;
+            }
+
+            .checker-form-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .trust-badges {
+                gap: 2rem;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">MICRO<span>TUFF</span></a>
+        <a href="#checker" class="nav-cta">Check Your Device →</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>
+                FRP Bypass & iCloud Removal
+                <span class="highlight">Professional Unlock Service</span>
+            </h1>
+            <p>Locked out of your phone? We remove Google FRP locks and iCloud activation locks quickly, safely, and professionally. Same-day service available.</p>
+            <div class="hero-buttons">
+                <a href="#checker" class="btn-primary">� Check Your Device</a>
+                <a href="https://wa.me/1876XXXXXXX?text=Hi%20Microtuff%20Solutions%2C%20I%20need%20help%20with%20FRP%20Bypass%20%2F%20iCloud%20Removal%20service." class="btn-secondary" target="_blank">💬 WhatsApp Us Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="section-header">
+            <h2>Our Services</h2>
+            <div class="underline"></div>
+            <p>Professional device unlocking solutions for all major brands</p>
+        </div>
+        <div class="service-cards">
+            <!-- FRP Bypass Card -->
+            <div class="service-card">
+                <div class="service-icon">🔓</div>
+                <h3>FRP Bypass (Android)</h3>
+                <div class="price-tag">$2,500 – $5,000 JMD</div>
+                <p>Factory Reset Protection bypass for Android devices locked to a Google account after a factory reset. We handle all major brands with a 95%+ success rate.</p>
+                <ul class="service-features">
+                    <li>Samsung, Huawei, Xiaomi, Oppo, Vivo</li>
+                    <li>Motorola, LG, Tecno, Infinix, Google Pixel</li>
+                    <li>Remote support via AnyDesk/TeamViewer</li>
+                    <li>Device shipped to us or drop-off available</li>
+                    <li>Completion time: 30 minutes – 24 hours</li>
+                    <li>100% money-back guarantee if unsuccessful</li>
+                </ul>
+            </div>
+            <!-- iCloud Removal Card -->
+            <div class="service-card">
+                <div class="service-icon">�️</div>
+                <h3>iCloud Removal (iPhone)</h3>
+                <div class="price-tag">Price on Request</div>
+                <p>iCloud Activation Lock removal for iPhones, iPads, and iPods tied to a previous owner's Apple ID. Pricing depends on model and severity of lock.</p>
+                <ul class="service-features">
+                    <li>All iPhone models supported (iPhone 4s – 15 Pro Max)</li>
+                    <li>iPad & iPod Touch models supported <li>iCloud removal via IMEI/server unlock</li>
+                    <li>Clean IMEI — no activation issues post-removal</li>
+                    <li>IC-INFO / GSX verified clean status</li>
+                    <li>Handling time: 1–5 business days</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Supported Brands -->
+    <section class="brands-section">
+        <div class="section-header">
+            <h2>Supported Brands</h2>
+            <div class="underline"></div>
+            <p>We service all major smartphone manufacturers</p>
+        </div>
+        <div class="brands-grid">
+            <span class="brand-chip">Samsung</span>
+            <span class="brand-chip">Huawei</span>
+            <span class="brand-chip">Xiaomi</span>
+            <span class="brand-chip">Oppo</span>
+            <span class="brand-chip">Vivo</span>
+            <span class="brand-chip">Motorola</span>
+            <span class="brand-chip">LG</span>
+            <span class="brand-chip">Tecno</span>
+            <span class="brand-chip">Infinix</span>
+            <span class="brand-chip">Google Pixel</span>
+            <span class="brand-chip">iPhone (All Models)</span>
+        </div>
+    </section>
+
+    <!-- Device Checker / Price Estimator -->
+    <section class="checker-section" id="checker">
+        <div class="section-header">
+            <h2>Device Checker & Price Estimator</h2>
+            <div class="underline"></div>
+            <p>Enter your device details to get an instant estimate and connect with us on WhatsApp</p>
+        </div>
+        <div class="checker-form-container">
+            <form id="deviceForm">
+                <div class="form-group">
+                    <label for="brand">Device Brand</label>
+                    <select id="brand" name="brand" required>
+                        <option value="" disabled selected>— Select Brand —</option>
+                        <option value="samsung">Samsung</option>
+                        <option value="huawei">Huawei</option>
+                        <option value="xiaomi">Xiaomi</option>
+                        <option value="oppo">Oppo</option>
+                        <option value="vivo">Vivo</option>
+                        <option value="motorola">Motorola</option>
+                        <option value="lg">LG</option>
+                        <option value="tecno">Tecno</option>
+                        <option value="infinix">Infinix</option>
+                        <option value="google">Google Pixel</option>
+                        <option value="iphone">iPhone (iCloud Removal)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="model">Device Model</label>
+                    <input type="text" id="model" name="model" placeholder="e.g., Samsung Galaxy A14, iPhone 13 Pro, Redmi Note 12" required>
+                </div>
+                <div class="form-group">
+                    <label for="imei">IMEI Number (Optional)</label>
+                    <input type="tel" id="imei" name="imei" placeholder="Enter 15-digit IMEI (check *#06#)" maxlength="15" pattern="[0-9]{15}" title="Enter a valid 15-digit IMEI number">
+                </div>
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <button type="submit" class="btn-primary" style="font-size: 1.05rem; padding: 1rem 2.5rem;">
+                        Estimate Price & Book Service
+                    </button>
+                </div>
+            </form>
+
+            <!-- Price Result -->
+            <div class="price-result" id="priceResult">
+                <h3 id="resultTitle">Estimated Price</h3>
+                <div class="estimated-price" id="estimatedPrice">$2,500 – $5,000 JMD</div>
+                <div class="price-note" id="priceNote">Final price confirmed upon device inspection or remote diagnosis.</div>
+                <a id="whatsappBtn" href="#" class="btn-primary" target="_blank">
+                    � Book Service on WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="section-header">
+            <h2>How It Works</h2>
+            <div class="underline"></div>
+            <p>Simple process — get your device unlocked in no time</p>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Submit Details</h4>
+                <p>Fill out the device checker form above with your brand, model, and IMEI.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Get Estimate</h4>
+                <p>Receive an instant price estimate based on your device brand and model.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>Contact Us</h4>
+                <p>Click the WhatsApp button to book your service with our team.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h4>Device Unlocked</h4>
+                <p>Ship/drop off your device or connect remotely. We handle the rest!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="section-header">
+            <h2>Why Choose Microtuff Solutions?</h2>
+            <div class="underline"></div>
+        </div>
+        <div class="trust-badges">
+            <div class="trust-badge">
+                <div class="icon">�</div>
+                <span>100% Safe & Secure</span>
+            </div>
+            <div class="trust-badge">
+                <div class="icon">⚡</div>
+                <span>Fast Turnaround</span>
+            </div>
+            <div class="trust-badge">
+                <div class="icon">💰</div>
+                <span>Money-Back Guarantee</span>
+            </div>
+            <div class="trust-badge">
+                <div class="icon">�</div>
+                <span>Jamaica-Wide Service</span>
+            </div>
+            <div class="trust-badge">
+                <div class="icon">�</div>
+                <span>All Brands Supported</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <a href="#" class="logo">MICRO<span>TUFF</span></a>
+        <p>&copy; 2026 Microtuff Solutions. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">Professional FRP Bypass & iCloud Removal Services — Kingston, Jamaica</p>
+        <div class="footer-links">
+            <a href="#checker">Device Checker</a>
+            <a href="https://wa.me/1876XXXXXXX?text=Hi%20Microtuff%20Solutions%2C%20I%20need%20a%20service%20inquiry." target="_blank">WhatsApp Us</a>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/1876XXXXXXX?text=Hi%20Microtuff%20Solutions%2C%20I%20need%20help%20with%20FRP%20Bypass%20%2F%20iCloud%20Removal." class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+        💬
+    </a>
+    <div class="whatsapp-tooltip">Need help? Chat with us!</div>
+
+    <!-- JavaScript -->
+    <script>
+        document.getElementById('deviceForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const brand = document.getElementById('brand').value;
+            const model = document.getElementById('model').value.trim();
+            const imei = document.getElementById('imei').value.trim();
+            const resultDiv = document.getElementById('priceResult');
+            const estimatedPriceEl = document.getElementById('estimatedPrice');
+            const priceNoteEl = document.getElementById('priceNote');
+            const whatsappBtn = document.getElementById('whatsappBtn');
+            const resultTitle = document.getElementById('resultTitle');
+
+            let price, note;
+
+            if (brand === 'iphone') {
+                price = 'Price on Request';
+                note = 'iCloud removal pricing varies by iPhone model, iOS version, and lock severity. Contact us on WhatsApp for an exact quote.';
+                resultTitle.textContent = 'iCloud Removal Estimate';
+            } else {
+                // Pricing tiers based on brand complexity
+                const highEndBrands = ['samsung', 'huawei', 'google'];
+                const midBrands = ['xiaomi', 'oppo', 'vivo', 'motorola', 'lg'];
+                const budgetBrands = ['tecno', 'infinix'];
+
+                if (highEndBrands.includes(brand)) {
+                    price = '$4,000 – $5,000 JMD';
+                    note = 'Premium brand device. Higher pricing due to advanced security measures.';
+                } else if (midBrands.includes(brand)) {
+                    price = '$3,000 – $4,000 JMD';
+                    note = 'Mid-range brand device. Standard FRP bypass pricing applies.';
+                } else if (budgetBrands.includes(brand)) {
+                    price = '$2,500 – $3,000 JMD';
+                    note = 'Budget brand device. Lower pricing due to simpler security.';
+                } else {
+                    price = '$2,500 – $5,000 JMD';
+                    note = 'Pricing varies by model and Android version. Contact us for exact quote.';
+                }
+                resultTitle.textContent = 'FRP Bypass Estimate';
+            }
+
+            estimatedPriceEl.textContent = price;
+            priceNoteEl.textContent = note;
+
+            // Build WhatsApp message
+            const brandName = document.getElementById('brand').options[document.getElementById('brand').selectedIndex].text;
+            const message = encodeURIComponent(
+                `Hi Microtuff Solutions, I need a service booking:\n\n` +
+                `📱 Brand: ${brandName}\n` +
+                `📱 Model: ${model}\n` +
+                (imei ? `� IMEI: ${imei}\n` : '') +
+                `💰 Estimated Price: ${price}\n\n` +
+                `Please confirm availability and next steps.`
+            );
+
+            whatsappBtn.href = `https://wa.me/1876XXXXXXX?text=${message}`;
+            resultDiv.classList.add('visible');
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        // Auto-fill model suggestions based on brand
+        document.getElementById('brand').addEventListener('change', function() {
+            const modelInput = document.getElementById('model');
+            const placeholders = {
+                'samsung': 'e.g., Galaxy A14, Galaxy S23 Ultra, Galaxy A54',
+                'huawei': 'e.g., Huawei P50, Y9a, Nova 9',
+                'xiaomi': 'e.g., Redmi Note 12, POCO X5 Pro, Mi 13',
+                'oppo': 'e.g., Oppo Reno 8, A77, Find X5',
+                'vivo': 'e.g., Vivo Y36, V27 Pro, X90',
+                'motorola': 'e.g., Moto G73, Edge 40, Razr 40',
+                'lg': 'e.g., LG Velvet, Wing, V60 ThinQ',
+                'tecno': 'e.g., Camon 20, Phantom X2, Spark 10',
+                'infinix': 'e.g., Note 30, Hot 40, GT 20 Pro',
+                'google': 'e.g., Pixel 7 Pro, Pixel 7a, Pixel 8',
+                'iphone': 'e.g., iPhone 13 Pro Max, iPhone 15, iPhone SE 2022'
+            };
+            if (placeholders[this.value]) {
+                modelInput.placeholder = placeholders[this.value];
+            } else {
+                modelInput.placeholder = 'Enter your device model';
+            }
+
+            // Hide result when brand changes
+            document.getElementById('priceResult').classList.remove('visible');
+        });
+    </script>
+
+</body>
+</html>
