@@ -1283,6 +1283,98 @@
                 text-align: center;
             }
         }
+        /* === FRP UNIFIED ENGINE === */
+        .engine-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .engine-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .engine-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .engine-card:hover {
+            border-color: var(--border-gold);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px var(--gold-glow);
+        }
+        .engine-card:hover::before { opacity: 1; }
+        .engine-icon { font-size: 2rem; margin-bottom: 12px; }
+        .engine-card h3 {
+            color: var(--gold-light);
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+        }
+        .engine-card p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+        .engine-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+        .method-tag {
+            background: var(--gold-glow);
+            color: var(--gold-light);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border: 1px solid var(--border-gold);
+        }
+        .engine-note {
+            font-size: 0.75rem !important;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        .engine-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            background: rgba(52, 211, 153, 0.05);
+            border: 1px solid rgba(52, 211, 153, 0.15);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+        }
+        .feature-icon { color: var(--success); font-size: 1rem; }
+        .cta-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        @media (max-width: 768px) {
+            .engine-grid { grid-template-columns: 1fr; }
+            .engine-features { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -1303,6 +1395,7 @@
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#services">Services</a></li>
+                <li><a href="#frp-engine">FRP Engine</a></li>
                 <li><a href="#how-it-works">How It Works</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="https://wa.me/18768036062?text=Hi%20Microtuff%20Solutions%2C%20I%20need%20help%20with%20FRP%20Bypass%20%2F%20iCloud%20Removal." class="nav-cta" target="_blank">Get Started</a></li>
@@ -1465,6 +1558,118 @@
                 </div>
             </section>
         </div>
+
+        <!-- FRP Unified Engine -->
+        <section class="section" id="frp-engine">
+            <div class="section-header reveal">
+                <div class="section-badge">
+                    <span class="dot"></span>
+                    FRP Unified Engine v2.0
+                </div>
+                <h2>Multi-Chipset <span class="gold">FRP Bypass Engine</span></h2>
+                <p>Re-engineered from Chimera Tool + TFT Unlock Tool methodologies — supporting all major chipsets</p>
+                <div class="section-divider"></div>
+            </div>
+            <div class="engine-grid reveal reveal-delay-1">
+                <div class="engine-card">
+                    <div class="engine-icon">🔧</div>
+                    <h3>MediaTek (MTK)</h3>
+                    <p>Helio G85/G99, Dimensity 6020/700/920</p>
+                    <div class="engine-methods">
+                        <span class="method-tag">META Mode</span>
+                        <span class="method-tag">BROM Mode</span>
+                        <span class="method-tag">Fastboot</span>
+                        <span class="method-tag">ADB</span>
+                    </div>
+                    <p class="engine-note">Redmi, Tecno, Infinix, Itel, Realme</p>
+                </div>
+                <div class="engine-card">
+                    <div class="engine-icon">⚡</div>
+                    <h3>Qualcomm</h3>
+                    <p>Snapdragon 4xx/6xx/7xx/8xx</p>
+                    <div class="engine-methods">
+                        <span class="method-tag">EDL (9008)</span>
+                        <span class="method-tag">Fastboot</span>
+                        <span class="method-tag">ADB</span>
+                    </div>
+                    <p class="engine-note">Samsung, Xiaomi, Oppo, OnePlus, Vivo</p>
+                </div>
+                <div class="engine-card">
+                    <div class="engine-icon">📡</div>
+                    <h3>Unisoc/Spreadtrum</h3>
+                    <p>SC9863A, T310, T606, T610, T7200</p>
+                    <div class="engine-methods">
+                        <span class="method-tag">SPD BROM</span>
+                        <span class="method-tag">ResearchDownload</span>
+                        <span class="method-tag">ADB</span>
+                    </div>
+                    <p class="engine-note">Logic L66M, Itel, Nokia, Alcatel, TCL</p>
+                </div>
+                <div class="engine-card">
+                    <div class="engine-icon">📱</div>
+                    <h3>Samsung</h3>
+                    <p>Galaxy A/M/S/Note/Z series</p>
+                    <div class="engine-methods">
+                        <span class="method-tag">Download Mode</span>
+                        <span class="method-tag">EUB Mode</span>
+                        <span class="method-tag">Modem Mode</span>
+                    </div>
+                    <p class="engine-note">All Exynos + Snapdragon variants</p>
+                </div>
+                <div class="engine-card">
+                    <div class="engine-icon">🔐</div>
+                    <h3>Huawei</h3>
+                    <p>P/Nova/Y/Honor series</p>
+                    <div class="engine-methods">
+                        <span class="method-tag">Factory Mode</span>
+                        <span class="method-tag">Fastboot</span>
+                        <span class="method-tag">ADB</span>
+                    </div>
+                    <p class="engine-note">All Kirin chipset devices</p>
+                </div>
+                <div class="engine-card">
+                    <div class="engine-icon">🔴</div>
+                    <h3>Xiaomi/Redmi</h3>
+                    <p>Mi, Redmi, POCO series</p>
+                    <div class="engine-methods">
+                        <span class="method-tag">EDL Auth</span>
+                        <span class="method-tag">Fastboot</span>
+                        <span class="method-tag">Mi Flash</span>
+                    </div>
+                    <p class="engine-note">All MTK + Qualcomm models</p>
+                </div>
+            </div>
+            <div class="engine-features reveal reveal-delay-2">
+                <div class="feature-item">
+                    <span class="feature-icon">✅</span>
+                    <span>No credits or subscription needed</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">✅</span>
+                    <span>Auto-detects connected device on COM ports</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">✅</span>
+                    <span>Built-in driver installer (SPD/MTK/QC)</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">✅</span>
+                    <span>Launches SPD Flash Tool, Odin, Mi Flash automatically</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">✅</span>
+                    <span>Step-by-step guided procedures for each chipset</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">✅</span>
+                    <span>Supports 8,000+ device models worldwide</span>
+                </div>
+            </div>
+            <div class="cta-container reveal">
+                <a href="mailto:mrmicrotuff@microtuffsolutions.com?subject=FRP%20Unified%20Engine%20Download" class="btn btn-primary">📥 Request Engine Download</a>
+                <a href="https://wa.me/18768036062?text=I%20need%20FRP%20bypass%20help" class="btn btn-whatsapp" target="_blank">💬 WhatsApp Us</a>
+            </div>
+        </section>
 
         <!-- How It Works -->
         <section class="section" id="how-it-works">
